@@ -1,0 +1,593 @@
+/*************************************************
+ * Dream Catcher - Tur Detay (styles2.css)
+ * Ultra modern, canlı renkler ve bol animasyonlu tasarım.
+ *************************************************/
+
+/*------------------------------
+  1) GENEL ANİMASYON KEYFRAMES
+------------------------------*/
+/* Fade-in animasyonu */
+@keyframes dcFadeIn {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/* Scale-up animasyonu */
+@keyframes dcScaleUp {
+  0% { transform: scale(0.85); opacity: 0; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* Pop-in animasyonu */
+@keyframes dcPopIn {
+  0% { transform: scale(0.9); opacity: 0; }
+  60% { transform: scale(1.1); opacity: 1; }
+  100% { transform: scale(1); }
+}
+
+/* Slide-in sağdan animasyonu */
+@keyframes dcSlideInRight {
+  0% { transform: translateX(100%); opacity: 0; }
+  100% { transform: translateX(0); opacity: 1; }
+}
+
+/* Bounce animasyonu */
+@keyframes dcBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-15px); }
+  60% { transform: translateY(-7px); }
+}
+
+/* Açıklama için yeni animasyon: Slide-up */
+@keyframes dcSlideUp {
+  0% { opacity: 0; transform: translateY(20px); }
+  100% { opacity: 1; transform: translateY(0); }
+}
+
+/*------------------------------
+  2) HERO (Arka Plan Video)
+------------------------------*/
+
+/* Varsayılan olarak menü gizli olsun (mobil için) */
+/*-----------------------------------*\
+  #HEADER
+\*-----------------------------------*/
+
+/* Header temel stili */
+.header {
+  background: var(--viridian-green);
+  padding-block: 20px;
+  height: 88px;
+  overflow: hidden;
+  transition: 0.25s var(--cubic-out);
+}
+
+/* Mobilde hamburger menü açıldığında header yüksekliği artar */
+.header.active {
+  height: 425px;
+  transition-duration: 0.35s;
+}
+
+/* Header içindeki konteyner: logo, navigasyon ve hamburger butonu */
+.header .container {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  align-items: center;
+}
+
+/* Logo stili */
+.logo {
+  color: var(--white-1);
+  font-size: var(--fs-2);
+  font-weight: var(--fw-600);
+}
+
+/* Hamburger buton (nav-toggle-btn) */
+.nav-toggle-btn {
+  display: block;
+  background: none;
+  border: none;
+  cursor: pointer;
+}
+
+/* Hamburger buton içerisindeki ikonlar */
+.nav-toggle-btn ion-icon {
+  color: var(--white-1);
+  font-size: 35px;
+  --ionicon-stroke-width: 40px;
+}
+
+/* Varsayılan durumda "open" ikon (üç çizgi) görünür, "close" gizli */
+.nav-toggle-btn .open {
+  display: block;
+}
+.nav-toggle-btn .close {
+  display: none;
+}
+
+/* Buton tıklandığında (header.active eklenince) durum değiştirilir */
+.header.active .nav-toggle-btn .open {
+  display: none;
+}
+.header.active .nav-toggle-btn .close {
+  display: block;
+}
+
+/* Navigasyon menüsü (navbar) - başlangıçta mobilde gizli */
+.navbar {
+  width: 100%;
+  padding: 20px 10px;
+  opacity: 0;
+  visibility: hidden;
+  transition: var(--transition-1);
+}
+
+/* Header active olduğunda (hamburger ile açıldığında) menü görünür hale gelir */
+.header.active .navbar {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Menü liste stili */
+.navbar-list {
+  margin-bottom: 15px;
+}
+
+/* Menü linkleri */
+.navbar-link {
+  color: var(--white-1);
+  font-size: var(--fs-5);
+  font-weight: var(--fw-500);
+  padding-block: 10px 0;
+  border-bottom: 2px solid transparent;
+  width: max-content;
+}
+.navbar-link:is(:hover, :focus) {
+  border-color: var(--white-1);
+}
+
+/* Masaüstü (992px üstü) için düzenlemeler */
+@media screen and (min-width: 992px) {
+  /* Hamburger buton masaüstünde gizlenir */
+  .nav-toggle-btn {
+    display: none;
+  }
+  /* Header yüksekliği sabitlenir */
+  .header,
+  .header.active {
+    height: unset;
+  }
+  /* Navbar yapılandırması */
+  .navbar {
+    all: unset;
+    display: flex;
+    align-items: center;
+    flex-grow: 1;
+  }
+  .navbar-list {
+    margin-bottom: 0;
+    margin-inline: auto;
+    display: flex;
+    align-items: center;
+    gap: 30px;
+  }
+}
+
+
+.tour-hero {
+  position: relative;
+  width: 100%;
+  height: 90vh;
+  overflow: hidden;
+}
+.tour-hero video {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: brightness(0.75);
+}
+.tour-hero-overlay {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(135deg, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0.85) 100%);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+  animation: dcFadeIn 1s ease forwards;
+  font-family: var(--ff-comforter-brush);
+  color: var(--mikado-yellow);
+}
+.tour-hero-overlay h2 {
+  font-family: var(--ff-comforter-brush);
+  color: var(--mikado-yellow);
+  font-size: var(--fs-3);
+  
+}
+
+/*------------------------------
+  3) TUR BİLGİLERİ BÖLÜMÜ (Fiyat, Puan, Açıklama)
+------------------------------*/
+/* Genel container */
+.tour-info-section {
+  position: relative;
+  z-index: 1;
+  margin: -100px auto 40px;
+  background: linear-gradient(135deg, #ffffff 0%, #f7f7f7 100%);
+  max-width: 900px;
+  border-radius: 10px;
+  padding: 40px 20px;
+  text-align: center;
+  animation: dcScaleUp 0.8s ease forwards;
+  box-shadow: 0 12px 40px rgba(0,0,0,0.15);
+}
+
+/* Tur meta bilgiler kartları */
+.tour-meta-wrap {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  flex-wrap: wrap;
+  margin-bottom: 30px;
+  animation: dcPopIn 0.8s ease forwards;
+}
+
+/* Her bir özellik kartı (Fiyat, Puan, Yorumlar) */
+.tour-meta-box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 6px;
+  background: linear-gradient(135deg, #e0f7fa, #ffffff);
+  padding: 20px 25px;
+  border-radius: 10px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  cursor: default;
+  flex: 1;
+  min-width: 120px;
+  position: relative;
+  padding-bottom: 20px;
+}
+.tour-meta-box:hover {
+  transform: translateY(-5px) scale(1.03);
+  box-shadow: 0 10px 25px rgba(0,0,0,0.15);
+  animation: dcBounce 1s;
+}
+
+/* İkon için ekstra boyut ve renk (Opsiyonel) */
+.tour-meta-box .ion-icon,
+.tour-meta-box .fa-icon {
+  font-size: 32px;
+  color: #3ba186; /* Canlı turkuaz */
+}
+
+/* Kart başlık stili (örn. Fiyat, Puan, Yorumlar) */
+.tour-meta-box h4 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #333;
+  margin: 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+/* value-wrap: kapsayıcı içinde değer ve simgeyi yan yana tutar */
+.value-wrap {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.25rem;
+  white-space: nowrap;
+}
+
+/* Ana değer ve simge stilleri */
+.tour-meta-box .main-value,
+.tour-meta-box .euro-symbol,
+.tour-meta-box .puan-simge {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: #444;
+}
+
+/* Açıklama metni */
+.tour-desc {
+  font-size: 1.6rem;
+  color: #555;
+  max-width: 700px;
+  margin: 20px auto 0;
+  line-height: 1.7;
+  animation: dcSlideUp 1s ease forwards;
+  opacity: 0; /* Başlangıçta animasyonla görünür olacak */
+}
+
+/*------------------------------
+  4) HİZMETLER (Servisler) Bölümü
+------------------------------*/
+.text h2 {
+  font-size: 40px;
+  font-weight: 650;
+  margin-top: 40px;
+  margin-bottom: 10px;
+  line-height: 2;
+  text-align: center;
+}
+
+.rowitems {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(100px, auto));
+  gap: 25px;
+  align-items: center;
+  text-align: center;
+  margin: 20px 30px 10px;
+}
+
+.container-box {
+  border: 1px solid #d3d3d3;
+  border-radius: 5px;
+  height: 300px;
+  padding: 50px 10px;
+  transition: all 0.7s ease;
+  cursor: pointer;
+}
+
+.container-image img {
+  display: block;
+  height: 100px;
+  width: 100px;
+  padding: 10px;
+  margin: 0 auto 15px;
+}
+
+.container-box h4 {
+  font-size: 20px;
+  margin-bottom: 5px;
+  font-weight: 550;
+}
+
+.container-box p {
+  font-size: 16px;
+  color: #808080;
+}
+
+.container-box:hover {
+  transform: translateX(3px);
+  box-shadow: 5px 20px 50px rgba(78, 78, 78, 0.1);
+  border: 1px solid transparent;
+  border-radius: 0;
+}
+
+/*------------------------------
+  5) YORUM LİSTESİ
+------------------------------*/
+.reviews-section {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+.reviews-section h3 {
+  font-size: 2.4rem;
+  color: #222;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 700;
+  letter-spacing: 0.5px;
+  animation: dcSlideInRight 1s ease;
+}
+.reviews-list {
+  list-style: none;
+  padding-left: 0;
+}
+
+/* Her yorum kutusu */
+.review-item {
+  background: #fff;
+  border: none;
+  border-radius: 10px;
+  padding: 20px;
+  margin-bottom: 20px;
+  box-shadow: 0 6px 20px rgba(0,0,0,0.05);
+  display: flex;
+  align-items: flex-start;
+  gap: 15px;
+  position: relative;
+  animation: dcFadeIn 0.8s ease forwards;
+  transition: transform 0.3s ease;
+}
+.review-item:hover {
+  transform: translateY(-3px);
+}
+
+/* Yorum ikonları */
+.review-item ion-icon {
+  font-size: 50px;
+  color: #3ba186;
+  flex-shrink: 0;
+}
+
+/* Yorum içeriği */
+.review-content {
+  flex: 1;
+}
+
+/* Yorum başlık kısmı */
+.review-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 8px;
+}
+.review-header strong {
+  font-size: 1.6rem;
+  color: #333;
+  font-weight: 700;
+}
+.review-stars {
+  display: flex;
+  gap: 2px;
+}
+.review-stars ion-icon {
+  color: #ffc107;
+  font-size: 20px;
+}
+.review-text {
+  font-size: 1.4rem;
+  color: #555;
+  line-height: 1.5;
+}
+
+/* Yorum tarihi: Sağ üst köşede gösterilecek */
+.review-date {
+  position: absolute;
+  top: 10px;
+  right: 15px;
+  font-size: 1.2rem;
+  color: #888;
+}
+
+/* "Daha Fazlası" butonu */
+.load-more-btn {
+  display: block;
+  background: #e52e71;
+  color: #fff;
+  padding: 12px 30px;
+  border: none;
+  border-radius: 6px;
+  margin: 20px auto 0;
+  font-size: 1.4rem;
+  font-weight: 600;
+  text-align: center;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+.load-more-btn:hover {
+  background: #d41f63;
+  transform: translateY(-3px);
+}
+
+/*------------------------------
+  6) YORUM EKLEME FORMU (Animasyon Destekli)
+------------------------------*/
+.review-form-section {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 30px 20px;
+  background: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0 8px 30px rgba(0,0,0,0.1);
+  animation: dcFadeIn 1s ease;
+}
+.review-form-section h3 {
+  font-size: 2.4rem;
+  color: #222;
+  text-align: center;
+  margin-bottom: 25px;
+  font-weight: 700;
+}
+.review-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+.review-form label {
+  display: block;
+  margin-bottom: 8px;
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #333;
+}
+/* Ek: Hizmet alınan tarihi soran alan */
+.review-form .service-date-group {
+  margin-bottom: 15px;
+}
+.review-form input,
+.review-form select,
+.review-form textarea {
+  width: 100%;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  padding: 10px;
+  font-size: 1.4rem;
+  color: #333;
+  margin-bottom: 15px;
+  transition: box-shadow 0.2s ease, border-color 0.2s ease;
+}
+.review-form input:focus,
+.review-form select:focus,
+.review-form textarea:focus {
+  border-color: #3ba186;
+  box-shadow: 0 0 0 3px rgba(59,161,134,0.2);
+}
+.review-form button {
+  background: #3ba186;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 30px;
+  cursor: pointer;
+  font-size: 1.6rem;
+  font-weight: 600;
+  transition: background 0.3s ease, transform 0.3s ease;
+  width: 100%;
+  max-width: 200px;
+  margin: 0 auto;
+  display: block;
+}
+.review-form button:hover {
+  background: #2a816c;
+  transform: translateY(-3px);
+}
+/* Bilgilendirme yazısı */
+.review-form .form-info {
+  font-size: 1.2rem;
+  color: #888;
+  margin-bottom: 10px;
+  text-align: center;
+}
+
+/*------------------------------
+  7) RESPONSIVE AYARLAR
+------------------------------*/
+@media screen and (max-width: 768px) {
+  .tour-hero {
+    height: 70vh;
+  }
+  .tour-hero-overlay h2 {
+    font-size: 3rem;
+  }
+  .tour-meta-wrap {
+    flex-direction: column;
+    gap: 20px;
+  }
+  .rowitems {
+    grid-template-columns: 1fr;
+  }
+  .review-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .tour-desc {
+    margin-top: 30px;
+  }
+}
+@media screen and (min-width: 992px) {
+  .tour-hero-overlay h2 {
+    font-size: 4.4rem;
+  }
+}
+
+/*------------------------------
+  EK NOT:
+  Eğer mobilde kutuların taşma sorunu yaşanırsa, 
+  .tour-meta-wrap içerisine "overflow-x: auto;" ekleyebilirsiniz.
+------------------------------*/
+/* @media (max-width: 480px) {
+  .tour-meta-wrap {
+    overflow-x: auto;
+  }
+} */
+

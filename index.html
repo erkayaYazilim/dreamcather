@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="tr">
+<head>
+  <meta charset="UTF-8" />
+  <title>Admin Panel</title>
+  <link rel="stylesheet" href="./assets/css/tasariö.css">
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap" rel="stylesheet">
+  <!-- Font Awesome (İkonlar için) -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+</head>
+<body>
+
+  <header class="header">
+    <div class="container header-container">
+      <h1 class="logo">Admin Panel</h1>
+      <button id="logoutBtn" class="btn logout-btn">Çıkış <i class="fas fa-sign-out-alt"></i></button>
+    </div>
+  </header>
+
+  <main class="main-section">
+    <div class="container">
+
+      <!-- Onay Bekleyen Yorumlar Bölümü -->
+      <section class="section">
+        <h2 class="section-title">Onay Bekleyen Yorumlar</h2>
+        <div class="table-responsive">
+          <table id="reviewTable">
+            <thead>
+              <tr>
+                <th>Tur ID</th>
+                <th>İsim</th>
+                <th>Puan</th>
+                <th>Yorum</th>
+                <th>İşlemler</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Onay bekleyen yorumlar eklenecek -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+      <!-- Fiyat Yönetimi Bölümü -->
+      <section class="section">
+        <h2 class="section-title">Fiyat Yönetimi</h2>
+        <div class="table-responsive">
+          <table id="toursTable">
+            <thead>
+              <tr>
+                <th>Tur ID</th>
+                <th>Tur Adı</th>
+                <th>Mevcut Fiyat (€)</th>
+                <th>Başlayan fiyatlarla(En Düşük Fiyat)</th>
+                <th>Fiyat Detayları</th>
+                <th>İşlem</th>
+              </tr>
+            </thead>
+            <tbody>
+              <!-- Turlar eklenecek -->
+            </tbody>
+          </table>
+        </div>
+      </section>
+
+    </div>
+  </main>
+
+  <!-- Firebase SDK & app.js -->
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-database-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/9.17.1/firebase-auth-compat.js"></script>
+  <script src="./assets/js/app2.js"></script>
+
+</body>
+</html>
